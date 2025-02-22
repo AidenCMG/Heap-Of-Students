@@ -1,7 +1,7 @@
 #include <iostream>
 #include "date.h"
 #include "address.h"
-//#include "student.h"
+#include "student.h"
 
 void testAddress();
 void testDate();
@@ -11,7 +11,7 @@ int main(){
   std::cout << "Hello!" << std::endl;
   testAddress();
   testDate();
-  //testStudent();
+  testStudent();
   return 0;
 } // end main
 
@@ -33,6 +33,6 @@ void testStudent(){
   student->init(studentString);
   student->printStudent();
   std::cout << std::endl;
-  std::cout << student->getLastFirst();
+  std::cout << student->getlastFirst() << std::endl;
   delete student;
 } // end testStudent */
