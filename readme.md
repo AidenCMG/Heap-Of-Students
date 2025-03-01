@@ -1,5 +1,7 @@
 # Heap-Of-Students  
 
+## Currently still working on some functions in main
+
 This project takes in a string of student data and parses it to be easily sortable by different categories.
 Right now the program will only test one predetermined string and print out the various categories.
 
@@ -54,3 +56,40 @@ init(studentString):
 ```
  This init parses a string containing all the students info and places them into the appropriate areas.
 
+ The following is the algorithm for main:
+ ```
+ function main():
+    vector<Student> students
+    keepGoing = True
+    while(keepGoing):
+        menu()
+    
+
+choice = input()
+for length of map:
+    if choice == mapKey:
+
+function loadStudents(vector& studentVector):
+    open students.csv
+    while(inFile):
+        create student
+        read line and send string to student object
+        place student in vector
+
+function delStudents(vector& studentVector)
+    for student in students:
+        delete object from heap at position student
+
+function menu():
+    print("0) quit")
+    print("1) print all student names")
+    print("2) print all student data")
+    print("3) find a student")
+
+    map 0-4 to the corresponding functions
+
+        selection = input("Choose an option: ")
+        for value in map:
+            if value == selection:
+                call function at value
+            
