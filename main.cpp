@@ -5,17 +5,41 @@
 #include "address.h"
 #include "student.h"
 #include <vector>
+#include <map>
 void loadStudents(std::vector<Student*>& studentsVector);
 void delStudents(std::vector<Student*>& studentsVector);
 void printStudents(std::vector<Student*>& studentsVector);
 void showStudentNames(std::vector<Student*>& studentsVector);
 void findStudent(std::vector<Student*>& studentsVector);
+std::string menu();
 
 int main(){
   std::vector<Student*> students;
   loadStudents(students);
-  findStudent(students);
+  // I wanted to try using a map for the menu option instead of using a series of if's and elses to determine what function to call. 
+  std::map<std::string,void(*)(std::vector<Student*>&)> menuChoices = {
+    {"1", showStudentNames},
+    {"2", printStudents},
+    {"3", findStudent}
+  };
+  bool keepGoing = true;
+  while (keepGoing){
+    std::string selection = menu();
+    //ended up still needing ifs to ensure the selection was valid
+    if (selection == "0"){
+      keepGoing = false;
+    }
+    //checks if selection is in map
+    else if (menuChoices.find(selection) != menuChoices.end()){
+      menuChoices[selection](students);
+    }
+    else {
+      std::cout << "Not a valid option" << std::endl;
+    }
+  }
+  //clean up
   delStudents(students);
+
   return 0;
 } // end main
 
@@ -41,6 +65,7 @@ void printStudents(std::vector<Student*>& studentsVector){
     studentsVector[i]->printStudent();
     std::cout << std::endl;
   }
+  std::cout << std::endl <<"_________________________" << std::endl;
 }
 
 void showStudentNames(std::vector<Student*>& studentsVector){
@@ -48,6 +73,7 @@ void showStudentNames(std::vector<Student*>& studentsVector){
     std::cout << studentsVector[i]->getlastFirst();
     std::cout << std::endl;
   }
+  std::cout << std::endl <<"_________________________" << std::endl;
 }
 
 void findStudent(std::vector<Student*>& studentsVector){
@@ -63,8 +89,26 @@ void findStudent(std::vector<Student*>& studentsVector){
     getline(ss,lastName,',');
 
     if(lastName.find(searchTerm) != std::string::npos){
-      std::cout << studentsVector[i]->getlastFirst();
+      studentsVector[i]->printStudent();
+      std::cout << std::endl;
+      
     }
     
   }
+  std::cout << std::endl <<"_________________________" << std::endl;
+}
+
+std::string menu(){
+  std::cout << "0) quit" << std::endl;
+  std::cout << "1) print all student names" << std::endl;
+  std::cout << "2) print all student data" << std::endl;
+  std::cout << "3) find a student" << std::endl;
+
+  std::cout << "Please choose 0-3: ";
+  std::string selection = "";
+  std::cin >> selection;
+  std::cout << std::endl;
+  
+  return selection;
+
 }

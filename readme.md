@@ -1,9 +1,8 @@
 # Heap-Of-Students  
 
-## Currently still working on some functions in main
 
-This project takes in a string of student data and parses it to be easily sortable by different categories.
-Right now the program will only test one predetermined string and print out the various categories.
+This project takes in a csv of student data and parses it to be easily sortable by different categories.
+
 
 Here is the general algorithm for the init method of the Date class:
 ```
@@ -61,8 +60,14 @@ init(studentString):
  function main():
     vector<Student> students
     keepGoing = True
+    map 0-4 to the corresponding functions
     while(keepGoing):
-        menu()
+        selection = menu()
+        if selection = "0":
+        keepGoing = false
+        else if selection in map:
+            call function at selection
+    delStudents()
     
 
 choice = input()
@@ -85,11 +90,6 @@ function menu():
     print("1) print all student names")
     print("2) print all student data")
     print("3) find a student")
-
-    map 0-4 to the corresponding functions
-
-        selection = input("Choose an option: ")
-        for value in map:
-            if value == selection:
-                call function at value
-            
+    selection = input("Choose 0-3")
+    return selection
+```
